@@ -16,6 +16,19 @@ app.get('/', (req, res) => {
 })
 
 /**
+ * Criando uma rota com o verbo HTTP -> POST, além disso, também definindo um middleware para
+ * ser capaz de se comunicar utilizando JSON
+ */
+
+app.use(express.json())
+
+app.post('/api/product', (req, res) => {    
+    console.log(req.body)
+
+    return res.send("PRODUTO ADICIONADO!");
+})
+
+/**
  * Definindo a porta em que a aplicação estará rodando, e também, ao iniciar, ele irá exibir esta mensagem
  */
 app.listen(3000, () => {
