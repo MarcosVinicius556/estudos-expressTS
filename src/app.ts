@@ -68,6 +68,27 @@ app.get('/api/json', (req: Request, res: Response) => {
 });
 
 /**
+ * Recebendo parâmetros nas rotas (Router Parameters)
+ */
+
+app.get('/api/product/:id', (req: Request, res: Response) => {
+    console.log(req.params);
+
+    const id = req.params.id;
+    if(id === '1') {
+        const product = {
+            name: 'Shirt',
+            price: 30.00,
+            color: 'blue',
+            sizes: ['P', 'M', 'G']
+        }
+        return res.json(product);    
+    } else {
+        return res.send('Produto não encontrado');
+    }
+})
+
+/**
  * Definindo a porta em que a aplicação estará rodando, e também, ao iniciar, ele irá exibir esta mensagem
  */
 app.listen(3000, () => {
