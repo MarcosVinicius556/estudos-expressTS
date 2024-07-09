@@ -54,6 +54,20 @@ app.get('/api/interfaces', (req: Request, res: Response) => {
 });
 
 /**
+ * Realizando envio de JSON
+ */
+
+app.get('/api/json', (req: Request, res: Response) => {
+    //Fazendo a conversão de um objeto direto para JSON
+    return res.json({
+        name: 'Shirt',
+        price: 30.00,
+        color: 'blue',
+        sizes: ['P', 'M', 'G']
+    })
+});
+
+/**
  * Definindo a porta em que a aplicação estará rodando, e também, ao iniciar, ele irá exibir esta mensagem
  */
 app.listen(3000, () => {
