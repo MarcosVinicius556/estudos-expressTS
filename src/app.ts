@@ -1,5 +1,7 @@
 //Iniciando projeto
-import express from 'express';
+
+// Tipando as tipagens de requisições e responstas
+import express, { Request, Response } from 'express';
 
 /**
  * Incializando a aplicação EXPRESS
@@ -41,6 +43,15 @@ app.all('/api/product/check', (req, res) => {
         return res.send('Função não implementada!');
     }
 })
+
+/**
+ * Agora estaremos tipando nossos argumentos da função,
+ * desta forma o typescrit nos ajuda a identificar nossos retornos
+ * e entradas de cada rota
+ */
+app.get('/api/interfaces', (req: Request, res: Response) => {
+    return res.send('Utilizando interfaces com express')
+});
 
 /**
  * Definindo a porta em que a aplicação estará rodando, e também, ao iniciar, ele irá exibir esta mensagem
