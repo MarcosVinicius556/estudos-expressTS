@@ -89,6 +89,20 @@ app.get('/api/product/:id', (req: Request, res: Response) => {
 })
 
 /**
+ * Exemplo de rota complexa
+ * 
+ * - Rotas com mais de 1 parâmetro
+ */
+
+app.get('/api/product/:id/review/:reviewId', (req: Request, res: Response) => {
+    console.log(req.params);
+    const id = req.params.id;
+    const reviewId = req.params.reviewId;
+
+    return res.send(`Acessando a review ${reviewId} do produto ${id}`);
+});
+
+/**
  * Definindo a porta em que a aplicação estará rodando, e também, ao iniciar, ele irá exibir esta mensagem
  */
 app.listen(3000, () => {
