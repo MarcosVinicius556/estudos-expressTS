@@ -9,6 +9,22 @@ import express, { NextFunction, Request, Response } from 'express';
 const app = express();
 
 /**
+ * Criando um middleware para todas as rotas
+ * 
+ * Para isso devemos:
+ *  - Criar uma função (que será a nossa execução entre as rotas, middleware)
+ *  - Chamar o método 'use' e passar nossa função
+ * 
+ * Desta forma, nosso middleware passará a ser executado em todas as rotas
+ */
+function showPath(req: Request, res: Response, next: NextFunction) {
+    console.log(req.path);
+    next();
+}
+
+app.use(showPath)
+
+/**
  * Aqui estamos definindo uma rota, que por padrão no express, sempre virá com 2 parâmetros,
  * onde uma será a "req" de onde tiramos valores vindos da requisição, e o outro o "res" que seria nossa resposta (caso seja necessário devolver algo)
  * 
