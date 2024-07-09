@@ -1,7 +1,7 @@
 //Iniciando projeto
 
 // Tipando as tipagens de requisições e responstas
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 
 /**
  * Incializando a aplicação EXPRESS
@@ -115,6 +115,29 @@ function getUser(req: Request, res: Response) {
 }
 
 app.get('/api/user/:id', getUser);
+
+/**
+ * Middlewares -> Executando entre a execução de uma rota, por exemplo, o "app.use" é um middleware que utilizamos
+ * para que quando receba uma requisição, seja utilizado o padrão JSON
+ */
+
+/**
+ * Aqui estamos definindo um middleware, onde além dos padrões normais de rota '(req, res)', também
+ * teremos um parâmetro adicional, o 'next()' que é uma função que nos permite chamar uma próxima função,
+ * sendo assim podendo definir o fluxo de uma aplicação
+ */
+function checkUser(req: Request, res: Response, next: NextFunction) {
+    if(req.params.id === "1") {
+        console.log('Pode continuar')
+        next(); // Segue fluxo normal
+    } else {
+        console.log('Acesso negado!')
+    }
+}
+
+app.get('/api/user/:id/access', checkUser, (req: Request, res: Response) => {
+    return res.json({msg: "Bem vindo a área de acesso!"})
+})
 
 
 /**
