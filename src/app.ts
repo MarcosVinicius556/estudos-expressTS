@@ -103,6 +103,21 @@ app.get('/api/product/:id/review/:reviewId', (req: Request, res: Response) => {
 });
 
 /**
+ * Router Handler
+ * 
+ * Externalizamos uma função anônima de uma rota, útil para deixar o código mais limpo
+ */
+
+function getUser(req: Request, res: Response) {
+    console.log(`Resgatando o usuário com o ID ${req.params.id}`);
+
+    return res.send('O usuário foi encontrado!');
+}
+
+app.get('/api/user/:id', getUser);
+
+
+/**
  * Definindo a porta em que a aplicação estará rodando, e também, ao iniciar, ele irá exibir esta mensagem
  */
 app.listen(3000, () => {
