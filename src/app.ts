@@ -166,6 +166,20 @@ app.get('/api/user/:id/details/:name', (req: Request<{id: string, name: string}>
 })
 
 /**
+ * Tratando erros
+ */
+
+app.get('/api/error', (req: Request, res: Response) => {
+    try {
+
+        throw new Error("Algo deu errado!");
+    } catch(e: any) {
+        res.statusCode = 500;
+        res.status(500).json({msg: e.message})
+    }
+})
+
+/**
  * Definindo a porta em que a aplicação estará rodando, e também, ao iniciar, ele irá exibir esta mensagem
  */
 app.listen(3000, () => {
